@@ -27,7 +27,8 @@ namespace FoxMoney.Server.Mapping {
                 .ForMember(hr => hr.Value, opt => opt.ResolveUsing(h => h.TotalUnits * (h == null ? 0 : h.SecurityPrice.ClosingPrice)))
                 .ForMember(hr => hr.CapitalGain, opt => opt.ResolveUsing(h => (h.TotalUnits * (h == null ? 0 : h.SecurityPrice.ClosingPrice)) - h.TotalCostBase))
                 .ForMember(hr => hr.TotalReturn, opt => opt.ResolveUsing(h => ((h.TotalUnits * (h == null ? 0 : h.SecurityPrice.ClosingPrice)) - h.TotalCostBase) + h.TotalIncome))
-                .ForMember(h => h.Income, opt => opt.MapFrom(h => h.TotalIncome));
+                .ForMember(h => h.Income, opt => opt.MapFrom(h => h.TotalIncome))
+                .ForMember(h => h.PortfolioId, opt => opt.MapFrom(h => h.PortfolioId));
 
             CreateMap<Holding, HoldingDetailViewModel>()
                 .IncludeBase<Holding, HoldingViewModel>()

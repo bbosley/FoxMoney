@@ -9,5 +9,6 @@ namespace FoxMoney.Server.ViewModels {
         public decimal Income { get; set; }
         public decimal CurrencyGain { get; set; }
         public decimal TotalReturn { get; set; }
+        public long PortfolioId { get; set; }
     }
 }
