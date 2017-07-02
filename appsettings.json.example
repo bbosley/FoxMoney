@@ -1,0 +1,18 @@
+{
+  "Data": {
+    "useSqLite": "false",
+    "SqlLiteConnectionString": "Data Source=FoxMoney.db",
+    "PostgresqlConnectionString": "User ID=foxmoney;Password=-PASSWORD-;Host=localhost;Port=5432;Database=foxmoney;Pooling=true;"
+  },
+  "Logging": {
+    "IncludeScopes": false,
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "AlphaVantage": {
+    "ApiKey": "-KEY-"
+  }
+}

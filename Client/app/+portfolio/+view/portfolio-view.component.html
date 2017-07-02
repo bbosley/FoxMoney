@@ -1,0 +1,86 @@
+<div *ngIf="portfolio?.draft" class="alert alert-info">
+    <div class="alert-item">
+        <span class="alert-text">
+            This portfolio is currently in draft mode, please finalise entering transactions and <a (click)="removeDraft()">click here</a> to allow totalling to occur.
+        </span>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <td class="left">
+            <h2>{{ portfolio?.name }}</h2>
+        </td>
+        <td>
+            <h3>{{ portfolio?.totalValue | currency:'AUD':true:'2.2' }}</h3>
+            <br/> Current Value
+        </td>
+        <td>
+            <h3>{{ portfolio?.return | currency:'AUD':true:'2.2' }} | {{ portfolio?.returnPercent | percent:'1.0-2' }}</h3>
+            <br/> Total Return
+        </td>
+    </tr>
+</table>
+
+<div class="row">
+    <div class="card">
+        <div class="card-block">
+            <h3 class="card-title">Value</h3>
+            <p class="card-text">Graph</p>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="left">Portfolio</th>
+            <th>Total Return</th>
+            <th></th>
+            <th>Capital Gain</th>
+            <th></th>
+            <th>Income</th>
+            <th></th>
+            <th>Currency Gain</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="left">{{ portfolio?.name }}</td>
+            <td>{{ portfolio?.return | currency:'AUD':true:'2.2' }}</td>
+            <td>=</td>
+            <td>{{ portfolio?.capitalGain | currency:'AUD':true:'2.2' }}</td>
+            <td>+</td>
+            <td>{{ portfolio?.income | currency:'AUD':true:'2.2' }}</td>
+            <td>+</td>
+            <td>A$0.00</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="left">Holding</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Value</th>
+            <th>Capital Gain</th>
+            <th>Income</th>
+            <th>Currency Gain</th>
+            <th>Total Return</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let holding of portfolio?.holdings">
+            <td class="left"><a [routerLink]="['/holding/', holding.id]">{{ holding.name  }}</a></td>
+            <td>{{ holding.lastPrice | currency:'AUD':true:'1.2' }}</td>
+            <td>{{ holding.quantity }}</td>
+            <td>{{ holding.value | currency:'AUD':true:'1.2' }}</td>
+            <td>{{ holding.capitalGain | currency:'AUD':true:'1.2' }}</td>
+            <td>{{ holding.income | currency:'AUD':true:'1.2' }}</td>
+            <td>{{ holding.currencyGain | currency:'AUD':true:'1.2' }}</td>
+            <td>{{ holding.totalReturn | currency:'AUD':true:'1.2' }}</td>
+        </tr>
+    </tbody>
+</table>
+<a class="btn btn-primary" [routerLink]="['/holding/add/', portfolio?.id]">Add Holding</a>

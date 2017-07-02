@@ -1,0 +1,70 @@
+<table class="table">
+    <tr>
+        <td class="left">
+            <h2>{{ holding?.name }}</h2>
+        </td>
+        <td>
+            <h3>{{ holding?.quantity }} X {{ holding?.lastPrice | currency:'AUD':true:'1.2' }} = {{ holding?.value | currency:'AUD':true:'1.2'
+                }}
+            </h3>
+            <br/> Current Value
+        </td>
+        <td>
+            <h3>{{ holding?.totalReturn | currency:'AUD':true:'1.2' }} | {{ holding?.returnPercent | percent:'1.0-2' }}</h3>
+            <br/> Total Return
+        </td>
+    </tr>
+</table>
+
+<div class="row">
+    <div class="card">
+        <div class="card-block">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <h4>Unit Transactions</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Transaction Date</th>
+                <th>Type</th>
+                <th>Units</th>
+                <th>Unit Price</th>
+                <th>Brokerage</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let trans of holding?.unitTransactions">
+                <td>{{ trans.transactionDate | date:'yyyy-MM-dd' }}</td>
+                <td>{{ trans.transactionType }}</td>
+                <td>{{ trans.units }}</td>
+                <td>{{ trans.unitPrice | currency:'AUD':true:'1.2' }}</td>
+                <td>{{ trans.brokerage | currency:'AUD':true:'1.2' }}</td>
+                <td>{{ trans.value | currency:'AUD':true:'1.2' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" [routerLink]="['/holding/add/unit/', holding?.id]">Add Unit Transaction</a>
+</div>
+
+<div class="row">
+    <h4>Income Transactions</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Transaction Date</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let income of holding?.incomeTransactions">
+                <td>{{ income.incomeDate | date:'yyyy-MM-dd' }}</td>
+                <td>{{ income.income | currency:'AUD':true:'1.2' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" [routerLink]="['/holding/add/income/', holding?.id]">Add Income Transaction</a>
+</div>

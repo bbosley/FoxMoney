@@ -1,0 +1,18 @@
+<clr-header>
+    <div class="branding">
+      <a routerLink="" class="nav-link">
+        <clr-icon shape="vm-bug"></clr-icon>
+        <span class="title">FoxMoney</span>
+      </a>
+    </div>
+    <div class="header-actions">
+      <div *ngIf="!(authState$ | async)?.loggedIn">
+        <a class="nav-link nav-text" routerLink="login">Log In</a>|
+        <a class="nav-link nav-text" routerLink="register">Register</a>
+      </div>
+      <div *ngIf="(authState$ | async)?.loggedIn">
+        <a class="nav-link nav-text" routerLink="profile">{{(authState$ | async)?.profile.name}}</a>|
+        <a class="nav-link nav-text" (click)="accountService.logout()" routerLink="javascript:void(null);">Logout</a>
+      </div>
+    </div>
+  </clr-header>

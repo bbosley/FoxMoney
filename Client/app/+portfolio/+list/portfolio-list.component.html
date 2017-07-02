@@ -1,0 +1,30 @@
+<h4>Portfolio List</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Portfolio</th>
+            <th>Total Return</th>
+            <th></th>
+            <th>Capital Gain</th>
+            <th></th>
+            <th>Income</th>
+            <th></th>
+            <th>Currency Gain</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of portfolios">
+            <td><a [routerLink]="['/portfolio/', p.id]">{{ p.name }}</a></td>
+            <td>{{ p.return }}</td>
+            <td>=</td>
+            <td>{{ p.capitalGain }}</td>
+            <td>+</td>
+            <td>{{ p.income }}</td>
+            <td>+</td>
+            <td>$0</td>
+        </tr>
+    </tbody>
+</table>
+
+<a class="btn btn-primary" [routerLink]="['/portfolio/add']">Add Portfolio</a>
